@@ -71,6 +71,26 @@ app.patch('/:id', async (req, res) => {
     }
 })
 
+//creating delete API
+
+app.delete('/delete/:id', async(req, res) => {
+    try{
+         await Todolist.findByIdAndDelete(req.params.id);
+         res.send({
+            success: true,
+            message: "Entry has been deleted", //entry tested in postman has been deleted. It works!
+            data: null,
+         });
+    } catch (error) {
+        res.send ({
+            success: true,
+            message: 'Deletion aborted',
+            data: null,
+        });
+    }
+
+});
+
 
 app.listen(3000, () => {
     console.log(`Sever is listening on port: ${port}`);

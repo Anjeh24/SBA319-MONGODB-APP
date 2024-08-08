@@ -56,7 +56,7 @@ app.patch('/:id', async (req, res) => {
     const id = req.params.id;
     const updateTodo = req.body;
     try {
-        const result = await Todolist.findByIdAndUpdate(id, updateTodo, { new: true});
+        const result = await Todolist.findByIdAndUpdate(id, updateTodo, { new: true}); ////credits, code with zihad & class notes
         res.send({
             success: true,
             message: 'Entry has been updated',

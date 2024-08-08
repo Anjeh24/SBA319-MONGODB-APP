@@ -1,11 +1,15 @@
 import mongoose from 'mongoose';
+import { type } from 'os';
 
 const todoListSchema = new mongoose.Schema({
     text: {
         type: String,
         required: true
 },
-necessity: Boolean
+    importance: {
+        type: String,
+        required: true
+    }
 
 });
 

@@ -17,7 +17,7 @@ app.get('/Todos', async(req, res) => {
         const result = await Todolist.find()
         res.send({
             success: true,
-            message: 'List retrieved',
+            message: 'List retrieved', //working. When I check database and collections, I see todo-list
             data: result
 
         })
@@ -29,6 +29,27 @@ app.get('/Todos', async(req, res) => {
         });
     }
 });
+
+//creating post 
+
+app.post('/create-todolist', async (req, res) => {
+    const enterTodo = req.body
+    try {
+        const result = await Todolist.create(enterTodo)
+        res.send({
+            success: true,
+            message: "List item created",
+            data: result
+        })
+    }catch (err) {
+      res.send({
+        success: false,
+        message: "Failed to create request",
+        data: result
+      })
+    }
+})
+
 
 app.listen(3000, () => {
     console.log(`Sever is listening on port: ${port}`);

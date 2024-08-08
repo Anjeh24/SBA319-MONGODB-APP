@@ -50,6 +50,27 @@ app.post('/create-todolist', async (req, res) => {
     }
 })
 
+//creating patch to update entry
+
+app.patch('/:id', async (req, res) => {
+    const id = req.params.id;
+    const updateTodo = req.body;
+    try {
+        const result = await Todolist.findByIdAndUpdate(id, updateTodo, { new: true});
+        res.send({
+            success: true,
+            message: 'Entry has been updated',
+            data: result
+        })
+    } catch (error) {
+        res.send({
+            success: false,
+            message: 'update failed',
+            data: result
+        })
+    }
+})
+
 
 app.listen(3000, () => {
     console.log(`Sever is listening on port: ${port}`);
